@@ -13,26 +13,23 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 
 public class ApronItem extends ArmorItem {
-	public ApronItem(ArmorMaterial pMaterial, Properties pProperties) {
-		super(pMaterial, EquipmentSlot.LEGS, pProperties);
-	}
+    public ApronItem(ArmorMaterial pMaterial, Properties pProperties) {
+        super(pMaterial, Type.LEGGINGS, pProperties);
+    }
 
-	@Override
-	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-		consumer.accept(new IClientItemExtensions() {
-
-			@Override
-			public HumanoidModel<?> getHumanoidArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot,
-					HumanoidModel<?> defaultModel) {
-				EntityModelSet models = Minecraft.getInstance().getEntityModels();
-				ModelPart root = models.bakeLayer(ApronModel.LAYER_LOCATION);
-				return new ApronModel(root);
-			}
-
-		});
-	}
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            @Override
+            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel<?> defaultModel) {
+                EntityModelSet models = Minecraft.getInstance().getEntityModels();
+                ModelPart root = models.bakeLayer(ApronModel.LAYER_LOCATION);
+                return new ApronModel(root);
+            }
+        });
+    }
 
 }
